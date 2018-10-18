@@ -126,7 +126,7 @@ export class UserProvider {
             return true
           }
           if (isEmail) {
-            if (users[i].email === isEmail.email) {
+            if (users[i].email === user.email) {
               this._user = user;
               users[i] = user;
               this.ionStorage.set('users', users)
@@ -135,6 +135,7 @@ export class UserProvider {
           }
           return false
         }
+      }
     )
   }
 
