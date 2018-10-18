@@ -101,7 +101,6 @@ export class UserProvider {
               return true
             }
           )
-        break;
       case 0:
       case -1:
         return this.ionStorage.set('users', [user]).then(
@@ -109,7 +108,6 @@ export class UserProvider {
             return true;
           }
         )
-        break;
       default:
         return false;
     }
@@ -138,5 +136,4 @@ export class UserProvider {
       }
     )
   }
-
 }

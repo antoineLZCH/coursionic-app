@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService, USE_STORE } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { UserProvider } from "../../providers/user/user";
 import { HttpProvider } from "../../providers/http/http";
@@ -29,7 +29,7 @@ export class LoginPage {
 
   // Our translated text strings
   public loginErrorString: string; // Message d'erreur à la connexion
-  private opt: string = 'signin'; // définition de la tab par défaut
+  // private opt: string = 'signin'; // définition de la tab par défaut
 
   constructor(public http: HttpProvider, public userProvider: UserProvider, public menuCtrl: MenuController, public navCtrl: NavController, public translateService: TranslateService) {
     // Pas de Menu
