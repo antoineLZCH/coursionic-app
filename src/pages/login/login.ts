@@ -71,6 +71,18 @@ export class LoginPage {
     )
   }
 
+  doLoginV2() {
+    this.userProvider.loginUserV2(this.account.email, this.account.password).then(
+      (data: any) => {
+        if (data.error) this.loginErrorString = "Connection error"
+        else {
+          localStorage.setItem("user", data.user)
+          this.navCtrl.setRoot('ListFriendPage')
+        }
+      }
+    )
+  }
+
   doRegister() {
     this.userProvider.registerUser(this.account);
   }

@@ -3,6 +3,9 @@ export class Friend {
   fullname: string = '';
   avatar: string = '';
   email: string = '';
+  createdAt: string = "";
+  updatedAt: string = "";
+
 }
 
 export class User {

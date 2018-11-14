@@ -1,8 +1,11 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, MenuController} from 'ionic-angular';
-import {HttpProvider} from "../../providers/http/http";
-import {Friend} from "../../models/user";
-import {Util} from "../../providers/util/util";
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { HttpProvider } from "../../providers/http/http";
+import { Friend } from "../../models/user";
+import { Util } from "../../providers/util/util";
+import { UserApiProvider } from "../../providers/user-api/user-api"
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 /**
  * Generated class for the ListFriendsPage page.
@@ -27,25 +30,33 @@ export class ListFriendsPage {
   public Util = Util;
   private friends: Friend[] = [];
 
-  constructor(public menuCtrl: MenuController, public http:HttpProvider, public navCtrl:NavController, public navParams:NavParams) {
+  constructor(
+    public menuCtrl: MenuController, public http: HttpProvider,
+    public navCtrl: NavController, public navParams: NavParams,
+    public userAPI: UserApiProvider) {
+
   }
 
   ionViewDidLoad() {
     this.menuCtrl.enable(true);
-    this.http.get('friends.json').subscribe((friends) => {
-      this.friends = <Friend[]>friends;
+    let isConnected = Observable.interval(5000)
+      .take(5).subscribe(() => {
+        console.log('slt')
+      })
+    this.userAPI.getAllUsers().subscribe((data) => {
+      this.friends = data
     }, (err) => {
-      console.error(err);
-    });
+      console.error(err)
+    })
   }
 
   goToProfileFriend(sliding, friend: Friend) {
     sliding.close();
-    this.navCtrl.push('ProfileFriendPage', {friend});
+    this.navCtrl.push('ProfileFriendPage', { friend });
   }
 
   goToChatRoom(friend: Friend) {
-    this.navCtrl.push('ChatRoomPage', {friend});
+    this.navCtrl.push('ChatRoomPage', { friend });
   }
 
 

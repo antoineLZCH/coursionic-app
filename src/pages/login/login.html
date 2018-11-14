@@ -25,7 +25,7 @@
   </div>
 
   <div [ngSwitch]="opt">
-    <form (submit)="doLogin()" *ngSwitchCase="'signin'">
+    <form (submit)="doLoginV2()" *ngSwitchCase="'signin'">
 
       <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
 
